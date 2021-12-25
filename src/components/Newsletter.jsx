@@ -10,7 +10,7 @@ const Container = styled.div`
     justify-content: center;
 `;
 const Title = styled.h1`
-    font-size: 60px;
+    font-size: 70px;
     margin-bottom: 20px;
 `;
 const Desc = styled.div`
