@@ -34,4 +34,16 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req,res) => {
     }
 } )
 
+//GET USER
+router.get("/find/:id", verifyTokenAndAdmin, async (req,res) => {
+    try{
+        const user = await User.findById(req.params.id);
+        //prevent sending password back to user
+        const { password, ...others } = user._doc; //destructuring user. Also MongoDB stores our data in _doc
+        res.status(200).json( others );
+    }catch(err){
+        res.status(500).json(err)
+    }
+} )
+
 module.exports = router;
