@@ -4,11 +4,29 @@ import Login from "./pages/Login";
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
 
 const App = () => {
+  const user = true;
   return (
-      <Cart />
-  )
+    <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/login" element={ user? <Navigate to="/"/> : <Login />}/> 
+            {/* If user is logged in, then redirect to home page, else go to login page */}
+          <Route exact path="/cart" element={<Cart/>}/>
+          <Route exact path="/product/:id" element={<Product/>}/>
+          <Route exact path="/products/:category" element={<ProductList/>}/>
+          <Route exact path="/register" element={ user? <Navigate to="/"/> : <Register/>}/>
+          {/* <Route path="*" element={<NotFound/>}/> */}
+        </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
